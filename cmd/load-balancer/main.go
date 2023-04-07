@@ -9,7 +9,6 @@ import (
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	_, err := fmt.Fprintf(w, "Hello")
-	log.Infof("OPA")
 	if err != nil {
 		log.Error(err)
 	}
@@ -26,6 +25,9 @@ func main() {
 
 	handler := http.HandlerFunc(handler)
 	http.Handle("/", handler)
+	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprint(w, "OK")
+	})
 
 	log.Printf("Starting server on port %s\n", port)
 

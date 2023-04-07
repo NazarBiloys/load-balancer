@@ -16,6 +16,8 @@ RUN cd cmd/load-balancer \
 
 FROM alpine:3.16
 
+RUN apk add --no-cache curl
+
 ARG ROOT_FOLDER="app"
 ARG BUILD_ID=0
 ARG VERSION=0.0.1

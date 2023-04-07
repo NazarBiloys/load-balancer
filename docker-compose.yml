@@ -6,6 +6,11 @@ services:
       context: .
       dockerfile: "./build/Dockerfile"
     container_name: app-first
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://app-first:9090/health" ]
+      interval: 5s
+      timeout: 10s
+      retries: 3
     environment:
       PORT: "9090"
     networks:
@@ -20,6 +25,11 @@ services:
       context: .
       dockerfile: "./build/Dockerfile"
     container_name: app-second
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://app-second:1010/health" ]
+      interval: 5s
+      timeout: 10s
+      retries: 3
     environment:
       PORT: "1010"
     networks:
@@ -34,6 +44,11 @@ services:
       context: .
       dockerfile: "./build/Dockerfile"
     container_name: app-third
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://app-third:2020/health" ]
+      interval: 5s
+      timeout: 10s
+      retries: 3
     environment:
       PORT: "2020"
     networks:
@@ -48,6 +63,11 @@ services:
       context: .
       dockerfile: "./build/Dockerfile"
     container_name: app-fourth
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://app-fourth:3030/health" ]
+      interval: 5s
+      timeout: 10s
+      retries: 3
     environment:
       PORT: "3030"
     networks:
@@ -62,6 +82,11 @@ services:
       context: .
       dockerfile: "./build/Dockerfile"
     container_name: app-backup
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://app-backup:4040/health" ]
+      interval: 5s
+      timeout: 10s
+      retries: 3
     environment:
       PORT: "4040"
     networks:
@@ -92,3 +117,4 @@ services:
 
 networks:
   app-network:
+    driver: bridge
